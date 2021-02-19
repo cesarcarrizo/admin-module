@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import North from "./components/FirstLayer/North";
-import West from "./components/FirstLayer/West";
-import Footer from "./components/FirstLayer/Footer";
-import Center from "./components/FirstLayer/Center";
 import Axios from "axios";
+import Container from "react-bootstrap/Container";
+import UpperBar from "./components/UpperBar";
 
 const App = () => {
   const [users, setUsers] = useState(null);
@@ -27,12 +25,9 @@ const App = () => {
   return (
     <>
       {users !== null ? (
-        <>
-          <North />
-          <West />
-          <Center />
-          <Footer />
-        </>
+        <Container>
+          <UpperBar />
+        </Container>
       ) : (
         <h1>Cargando data...</h1>
       )}
