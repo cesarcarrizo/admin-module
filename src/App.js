@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import Container from "react-bootstrap/Container";
 import UpperBar from "./components/UpperBar";
+import Main from "./components/Main";
 
 const App = () => {
   const [users, setUsers] = useState(null);
@@ -27,6 +28,7 @@ const App = () => {
       {users !== null ? (
         <Container>
           <UpperBar />
+          <Main />
         </Container>
       ) : (
         <h1>Cargando data...</h1>
