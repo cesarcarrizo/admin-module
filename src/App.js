@@ -28,7 +28,7 @@ const App = () => {
       {users !== null ? (
         <Container>
           <UpperBar />
-          <Main />
+          <Main users={users} />
         </Container>
       ) : (
         <h1>Cargando data...</h1>

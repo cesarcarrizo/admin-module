@@ -4,7 +4,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Button from "react-bootstrap/Button";
 
-const LoginPopover = () => {
+const LoginPopover = ({ users, usersetter, passsetter }) => {
   const loginPopover = (
     <Popover id="popover-basic">
       <Popover.Title as="h3">Login</Popover.Title>
@@ -13,18 +13,30 @@ const LoginPopover = () => {
           <InputGroup.Prepend>
             <InputGroup.Text>Username</InputGroup.Text>
           </InputGroup.Prepend>
-          <input type="text" className="form-control" />
+          <input
+            type="text"
+            className="form-control"
+            onChange={(e) => usersetter(e["target"]["value"])}
+          />
         </InputGroup>
         <br></br>
         <InputGroup size="sm">
           <InputGroup.Prepend>
             <InputGroup.Text>Password</InputGroup.Text>
           </InputGroup.Prepend>
-          <input type="password" className="form-control" />
+          <input
+            type="password"
+            className="form-control"
+            onChange={(e) => passsetter(e["target"]["value"])}
+          />
         </InputGroup>
         <br></br>
 
-        <Button variant="outline-success" block>
+        <Button
+          variant="outline-success"
+          block
+          onClick={() => console.dir(users)}
+        >
           Iniciar sesión
         </Button>
       </Popover.Content>

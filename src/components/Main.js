@@ -1,29 +1,15 @@
-import React from "react";
-import Card from "react-bootstrap/Card";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import img from "../imgs/bgimage.jpg";
-import LoginPopover from "./LoginPopover";
+import React, { useState } from "react";
 
-const Main = () => {
-  return (
-    <Card>
-      <Card.Body>
-        <Row>
-          <Col>
-            <Card.Text>
-              Bienvenido al módulo de gestión principal del aeropuerto.
-            </Card.Text>
-          </Col>
-          <Col>
-            <LoginPopover />
-          </Col>
-        </Row>
-        <hr />
-        <Card.Img variant="bottom" src={img} />
-      </Card.Body>
-    </Card>
-  );
+import LoginView from "./LoginView";
+
+const Main = ({ users }) => {
+  const [displaying, setDisplaying] = useState("login");
+  switch (displaying) {
+    case "login":
+      return <LoginView users={users} />;
+    default:
+      return <h1>Error!</h1>;
+  }
 };
 
 export default Main;
