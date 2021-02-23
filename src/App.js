@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import Container from "react-bootstrap/Container";
+import Spinner from "react-bootstrap/Spinner";
 import UpperBar from "./components/UpperBar";
 import Main from "./components/Main";
 
@@ -10,7 +11,7 @@ const App = () => {
     getAllUsers();
   }, []);
   const getAllUsers = () => {
-    let config = {
+    const config = {
       headers: {
         "Access-Control-Allow-Origin": "*",
       },
@@ -31,7 +32,12 @@ const App = () => {
           <Main users={users} />
         </Container>
       ) : (
-        <h1>Cargando data...</h1>
+        <Container>
+          <br></br>
+          <Spinner animation="border">
+            <span className="sr-only">Loading data...</span>
+          </Spinner>
+        </Container>
       )}
     </>
   );
