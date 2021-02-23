@@ -104,11 +104,13 @@ const NewUser = () => {
               <br></br>
               <Form.Control
                 placeholder="Nueva contraseña"
+                type="password"
                 onChange={(e) => setPass(e["target"]["value"])}
               ></Form.Control>
               <br></br>
               <Form.Control
                 placeholder="Confirmar nueva contraseña"
+                type="password"
                 onChange={(e) => setPassconf(e["target"]["value"])}
               ></Form.Control>
               <br></br>
