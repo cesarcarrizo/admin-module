@@ -21,6 +21,12 @@ const Indicator = ({ ruta, guest }) => {
       case 4:
         setStr("Seguridad / Cambiar contraseña");
         break;
+      case 5:
+        setStr("Administración / Consecutivos");
+        break;
+      case 6:
+        setStr("Administración / Países");
+        break;
     }
   });
 
@@ -28,7 +34,7 @@ const Indicator = ({ ruta, guest }) => {
     <Alert variant="light">
       Bienvenido: {guest["nombrecompleto"]}
       <hr></hr>
-      Actualmente esta en: {str}
+      Actualmente está en: {str}
     </Alert>
   );
 };

@@ -10,6 +10,8 @@ import Home from "./Home";
 import Users from "./Users";
 import UpdateUserRoles from "./UpdateUserRoles";
 import ChangePassword from "./ChangePassword";
+import Consecutives from "./Consecutives";
+import Paises from "./Paises";
 
 const AppView = ({ guest }) => {
   const [sectionToRender, setSectionToRender] = useState("home");
@@ -38,6 +40,8 @@ const AppView = ({ guest }) => {
             ) : (
               <></>
             )}
+            {sectionToRender === "cons" ? <Consecutives /> : <></>}
+            {sectionToRender === "paises" ? <Paises /> : <></>}
           </Col>
         </Row>
       </Card.Body>

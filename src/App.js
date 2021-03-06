@@ -4,11 +4,18 @@ import Container from "react-bootstrap/Container";
 import Spinner from "react-bootstrap/Spinner";
 import UpperBar from "./components/UpperBar";
 import Main from "./components/Main";
+import { write } from "./store/StorageHandler";
 
 const App = () => {
   const [users, setUsers] = useState(null);
   useEffect(() => {
     getAllUsers();
+    // write("rPaises", 0);
+    // write("rAerolineas", 0);
+    // write("rPuertas", 0);
+    // write("rVuelosSalidas", 0);
+    // write("rVuelosLlegadas", 0);
+    // write("rBoletos", 0);
   }, []);
   const getAllUsers = () => {
     const config = {
