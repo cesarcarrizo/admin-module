@@ -15,7 +15,7 @@ export const read = (key) => {
 };
 
 export const goNext = async (table) => {
-  let consecutivos = await setData();
+  let consecutivos = await getConsecutivos();
 
   switch (table) {
     case "paises":
@@ -115,7 +115,7 @@ export const goNext = async (table) => {
   }
 };
 
-const setData = async () => {
+export const getConsecutivos = async () => {
   let consecutivos = [];
   const uri =
     "https://vvuelosrestfulservices.azurewebsites.net/api/Consecutivos";

@@ -92,16 +92,11 @@ const EditConsecutives = ({ editingsetter }) => {
         <>
           {!requested ? (
             <Alert variant="secondary">
-              <br></br>
               <Alert.Link onClick={() => editingsetter(false)}>
-                Atrás
+                <small>Atrás</small>
               </Alert.Link>
               <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
               <strong>Editar consecutivos</strong>
-              <br></br>
               <br></br>
               Selecione la tabla del consecutivo a Editar
               <Form.Control as="select">
