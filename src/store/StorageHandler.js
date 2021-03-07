@@ -22,7 +22,10 @@ export const goNext = async (table) => {
       if (localStorage.getItem("rPaises") === undefined) {
         localStorage.setItem("rPaises", Number(consecutivos[0]["rangoi"]));
       } else {
-        if (localStorage.getItem("rPaises") >= consecutivos[0]["rangof"])
+        if (
+          Number(localStorage.getItem("rPaises")) >= consecutivos[0]["rangof"]
+        )
+          //console.log(consecutivos[0]["rangof"]);
           throw new Error(
             `El rango del consecutivo ${consecutivos[0]["tabla"]} ha llegado a su limite! Cree mas consecutivos!`
           );

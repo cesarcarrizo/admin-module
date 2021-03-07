@@ -106,7 +106,10 @@ const EditPais = ({ rendersetter }) => {
           )}
         </>
       ) : (
-        <PostedAlert header="Nombre de pais editado con exito!" content="niy" />
+        <PostedAlert
+          header="Nombre de país editado con éxito!"
+          content={`${oldName} pasó a llamarse: ${newName}`}
+        />
       )}
     </>
   );

@@ -26,7 +26,7 @@ const NewPais = ({ rendersetter }) => {
 
       const uri = "https://vvuelosrestfulservices.azurewebsites.net/api/Paises";
 
-      Axios.post(uri, toPost, config)
+      await Axios.post(uri, toPost, config)
         .then((res) => {
           setPosted(true);
           setIdPosted(toPost["id"]);
