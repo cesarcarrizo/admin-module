@@ -12,6 +12,8 @@ import UpdateUserRoles from "./UpdateUserRoles";
 import ChangePassword from "./ChangePassword";
 import Consecutives from "./Consecutives";
 import Paises from "./Paises";
+import Aerolineas from "./Aerolineas";
+import Puertas from "./Puertas";
 
 const AppView = ({ guest }) => {
   const [sectionToRender, setSectionToRender] = useState("home");
@@ -42,6 +44,8 @@ const AppView = ({ guest }) => {
             )}
             {sectionToRender === "cons" ? <Consecutives /> : <></>}
             {sectionToRender === "paises" ? <Paises /> : <></>}
+            {sectionToRender === "aerolineas" ? <Aerolineas /> : <></>}
+            {sectionToRender === "puertas" ? <Puertas /> : <></>}
           </Col>
         </Row>
       </Card.Body>

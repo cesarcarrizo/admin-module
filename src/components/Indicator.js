@@ -27,6 +27,9 @@ const Indicator = ({ ruta, guest }) => {
       case 6:
         setStr("Administración / Países");
         break;
+      case 7:
+        setStr("Administración / Aerolíneas");
+        break;
     }
   });
 

@@ -3,6 +3,19 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+//TESTING ZONE//
+
+// import { getAll, writeOn } from "./store/storeController";
+// (async () => {
+//   console.log("Iniciando cliente...");
+//   console.log(getAll());
+//   await writeOn({ foo: "test" });
+//   console.log(getAll());
+// })();
+
+////////////////
+
 ReactDOM.render(<App />, document.getElementById("root"));
 
 // If you want to start measuring performance in your app, pass a function

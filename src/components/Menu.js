@@ -82,12 +82,22 @@ const Menu = ({ sectionsetter, routesetter }) => {
       </Alert.Link>
       <br></br>
 
-      <Alert.Link>
+      <Alert.Link
+        onClick={() => {
+          sectionsetter("aerolineas");
+          routesetter(7);
+        }}
+      >
         <small>Aerolíneas</small>
       </Alert.Link>
       <br></br>
 
-      <Alert.Link>
+      <Alert.Link
+        onClick={() => {
+          sectionsetter("puertas");
+          routesetter(8);
+        }}
+      >
         <small>Puertas de aeropuerto</small>
       </Alert.Link>
       <br></br>

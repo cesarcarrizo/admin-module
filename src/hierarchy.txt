@@ -1,6 +1,0 @@
-App
-|_UpperBar
-|_Main
-    |_LoginView
-    |    |_LoginPopover
-    |_AppView
