@@ -30,6 +30,9 @@ const Indicator = ({ ruta, guest }) => {
       case 7:
         setStr("Administración / Aerolíneas");
         break;
+      case 8:
+        setStr("Administración / Puertas");
+        break;
     }
   });
 

@@ -1,12 +1,13 @@
-import Axios from "axios";
 import React, { useState } from "react";
-import { Alert, Col, Form, Row, Button, Spinner } from "react-bootstrap";
+import axios from "axios";
+import { Alert, Row, Col, Form, Button, Spinner } from "react-bootstrap";
 
 import { read, goNext, trim, getConsecutivos } from "../store/StorageHandler";
 import PostedAlert from "./PostedAlert";
 
-const NewAerolinea = ({ rendersetter }) => {
+const NewPuerta = ({ rendersetter }) => {
   const [name, setName] = useState("");
+  const [estatus, setEstatus] = useState(null);
   const [requested, setRequested] = useState(false);
   const [posted, setPosted] = useState(false);
   const [idPosted, setIdPosted] = useState(null);
@@ -16,7 +17,8 @@ const NewAerolinea = ({ rendersetter }) => {
       setRequested(true);
       let toPost = {
         id: await generarId(),
-        nombre: name,
+        numero: name,
+        estado: estatus,
       };
       const config = {
         headers: {
@@ -25,9 +27,10 @@ const NewAerolinea = ({ rendersetter }) => {
       };
 
       const uri =
-        "https://vvuelosrestfulservices.azurewebsites.net/api/Aerolineas";
+        "https://vvuelosrestfulservices.azurewebsites.net/api/Puertas";
 
-      Axios.post(uri, toPost, config)
+      axios
+        .post(uri, toPost, config)
         .then((res) => {
           setPosted(true);
           setIdPosted(toPost["id"]);
@@ -36,60 +39,69 @@ const NewAerolinea = ({ rendersetter }) => {
     }
   };
 
-  const validaciones = () => {
-    if (name === "" || !isNaN(name)) {
-      alert("Ingrese un nombre de aerolínea válido!");
-      return false;
-    }
-    return true;
-  };
-
   const generarId = async () => {
     let consecutivos = await getConsecutivos();
     //console.log(consecutivos);
-    goNext("aerolineas");
-    return trim(consecutivos[1], read("rAerolineas"));
+    goNext("puertas");
+    return trim(consecutivos[2], read("rPuertas"));
   };
 
+  const validaciones = () => {
+    if (name === "" || estatus === null) {
+      alert("Todos los campos son obligatorios!");
+      return false;
+    }
+
+    return true;
+  };
   return (
     <>
       {!posted ? (
         <>
           {!requested ? (
             <Alert variant="secondary">
-              <Alert.Link onClick={() => rendersetter("lista-aero")}>
+              <Alert.Link onClick={() => rendersetter("lista-puertas")}>
                 <small>Atrás</small>
               </Alert.Link>
               <br></br>
-              <strong>Agregar Nueva Aerolínea</strong>
+              <strong>Agregar Nueva Puerta</strong>
               <br></br>
               <br></br>
               <Row>
                 <Col>
                   <Form.Control
-                    placeholder="Escriba el nombre de la nueva aerolínea a agregar."
+                    placeholder="Número/Nombre de la nueva puerta a agregar."
                     onChange={(e) => setName(e["target"]["value"])}
                   ></Form.Control>
                 </Col>
                 <Col>
+                  <Form.Control as="select">
+                    <option onClick={() => setEstatus(null)}>
+                      Seleccione una opción...
+                    </option>
+                    <option onClick={() => setEstatus(1)}>Abierta</option>
+                    <option onClick={() => setEstatus(0)}>Cerrada</option>
+                  </Form.Control>
+                </Col>
+                <Col>
                   <Button variant="success" block onClick={handler}>
-                    Agregar nueva aerolínea
+                    Agregar nueva puerta
                   </Button>
                 </Col>
               </Row>
             </Alert>
           ) : (
-            <Spinner animation="border"></Spinner>
+            <Spinner animation="border" />
           )}
         </>
       ) : (
         <PostedAlert
-          header="Aerolínea agregada satisfactoriamente!"
-          content={`Id: ${idPosted} - Aerolínea agregada: ${name}`}
+          header="Puerta agregada satisfactoriamente!"
+          content={`Id: ${idPosted} - Puerta agregada: ${name}`}
         />
       )}
     </>
   );
 };
 
-export default NewAerolinea;
+export default NewPuerta;
