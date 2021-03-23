@@ -33,6 +33,24 @@ const Indicator = ({ ruta, guest }) => {
       case 8:
         setStr("Administración / Puertas");
         break;
+      case 9:
+        setStr("Consultas / Bitácora");
+        break;
+      case 10:
+        setStr("Consultas / Errores");
+        break;
+      case 11:
+        setStr("Consultas / Descargas");
+        break;
+      case 12:
+        setStr("Consultas / Aerolíneas");
+        break;
+      case 13:
+        setStr("Consultas / Puertas");
+        break;
+      default:
+        setStr("Error retriving the str.");
+        break;
     }
   });
 

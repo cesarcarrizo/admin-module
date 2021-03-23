@@ -2,24 +2,24 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { Alert, Spinner, Table } from "react-bootstrap";
 
-const dummy = () => {
-  const [state, setState] = useState(null);
+const CPuertas = () => {
+  const [puertas, setPuertas] = useState(null);
 
   useEffect(() => {
-    const uri = "https://vvuelosrestfulservices.azurewebsites.net/api/...";
+    const uri = "https://vvuelosrestfulservices.azurewebsites.net/api/Puertas";
     const config = {
       headers: {
         "Access-Control-Allow-Origin": "*",
       },
     };
     Axios.get(uri)
-      .then((res) => setState(res["data"]))
+      .then((res) => setPuertas(res["data"]))
       .catch((err) => alert(err));
   }, []);
 
   return (
     <>
-      {state !== null ? (
+      {puertas !== null ? (
         <Alert>
           <br></br>
           <strong>the shieet</strong>
@@ -42,4 +42,4 @@ const dummy = () => {
   );
 };
 
-export default dummy;
+export default CPuertas;

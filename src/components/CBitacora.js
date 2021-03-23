@@ -2,24 +2,25 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { Alert, Spinner, Table } from "react-bootstrap";
 
-const dummy = () => {
-  const [state, setState] = useState(null);
+const CBitacora = () => {
+  const [bitacoras, setBitacoras] = useState(null);
 
   useEffect(() => {
-    const uri = "https://vvuelosrestfulservices.azurewebsites.net/api/...";
+    const uri =
+      "https://vvuelosrestfulservices.azurewebsites.net/api/Bitacoras";
     const config = {
       headers: {
         "Access-Control-Allow-Origin": "*",
       },
     };
     Axios.get(uri)
-      .then((res) => setState(res["data"]))
+      .then((res) => setBitacoras(res["data"]))
       .catch((err) => alert(err));
   }, []);
 
   return (
     <>
-      {state !== null ? (
+      {bitacoras !== null ? (
         <Alert>
           <br></br>
           <strong>the shieet</strong>
@@ -42,4 +43,4 @@ const dummy = () => {
   );
 };
 
-export default dummy;
+export default CBitacora;

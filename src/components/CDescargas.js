@@ -2,24 +2,25 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { Alert, Spinner, Table } from "react-bootstrap";
 
-const dummy = () => {
-  const [state, setState] = useState(null);
+const CDescargas = () => {
+  const [descargas, setDescargas] = useState(null);
 
   useEffect(() => {
-    const uri = "https://vvuelosrestfulservices.azurewebsites.net/api/...";
+    const uri =
+      "https://vvuelosrestfulservices.azurewebsites.net/api/VuelosLlegadas";
     const config = {
       headers: {
         "Access-Control-Allow-Origin": "*",
       },
     };
     Axios.get(uri)
-      .then((res) => setState(res["data"]))
+      .then((res) => setDescargas(res["data"]))
       .catch((err) => alert(err));
   }, []);
 
   return (
     <>
-      {state !== null ? (
+      {descargas !== null ? (
         <Alert>
           <br></br>
           <strong>the shieet</strong>
@@ -42,4 +43,4 @@ const dummy = () => {
   );
 };
 
-export default dummy;
+export default CDescargas;

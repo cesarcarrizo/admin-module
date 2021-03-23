@@ -104,23 +104,48 @@ const Menu = ({ sectionsetter, routesetter }) => {
       <strong>Consultas</strong>
       <br></br>
 
-      <Alert.Link>
+      <Alert.Link
+        onClick={() => {
+          sectionsetter("c-bitacora");
+          routesetter(9);
+        }}
+      >
         <small>Bitácora</small>
       </Alert.Link>
       <br></br>
-      <Alert.Link>
+      <Alert.Link
+        onClick={() => {
+          sectionsetter("c-errores");
+          routesetter(10);
+        }}
+      >
         <small>Errores</small>
       </Alert.Link>
       <br></br>
-      <Alert.Link>
+      <Alert.Link
+        onClick={() => {
+          sectionsetter("c-descargas");
+          routesetter(11);
+        }}
+      >
         <small>Descargas</small>
       </Alert.Link>
       <br></br>
-      <Alert.Link>
+      <Alert.Link
+        onClick={() => {
+          sectionsetter("c-aerolineas");
+          routesetter(12);
+        }}
+      >
         <small>Aerolíneas</small>
       </Alert.Link>
       <br></br>
-      <Alert.Link>
+      <Alert.Link
+        onClick={() => {
+          sectionsetter("c-puertas");
+          routesetter(13);
+        }}
+      >
         <small>Puertas</small>
       </Alert.Link>
       <br></br>

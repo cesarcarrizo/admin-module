@@ -14,6 +14,11 @@ import Consecutives from "./Consecutives";
 import Paises from "./Paises";
 import Aerolineas from "./Aerolineas";
 import Puertas from "./Puertas";
+import CAerolineas from "./CAerolineas";
+import CPuertas from "./CPuertas";
+import CDescargas from "./CDescargas";
+import CErrores from "./CErrores";
+import CBitacora from "./CBitacora";
 
 const AppView = ({ guest }) => {
   const [sectionToRender, setSectionToRender] = useState("home");
@@ -46,6 +51,11 @@ const AppView = ({ guest }) => {
             {sectionToRender === "paises" ? <Paises /> : <></>}
             {sectionToRender === "aerolineas" ? <Aerolineas /> : <></>}
             {sectionToRender === "puertas" ? <Puertas /> : <></>}
+            {sectionToRender === "c-bitacora" ? <CBitacora /> : <></>}
+            {sectionToRender === "c-errores" ? <CErrores /> : <></>}
+            {sectionToRender === "c-descargas" ? <CDescargas /> : <></>}
+            {sectionToRender === "c-aerolineas" ? <CAerolineas /> : <></>}
+            {sectionToRender === "c-puertas" ? <CPuertas /> : <></>}
           </Col>
         </Row>
       </Card.Body>
