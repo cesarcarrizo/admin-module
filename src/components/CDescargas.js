@@ -13,7 +13,7 @@ const CDescargas = () => {
         "Access-Control-Allow-Origin": "*",
       },
     };
-    Axios.get(uri)
+    Axios.get(uri, config)
       .then((res) => setDescargas(res["data"]))
       .catch((err) => alert(err));
   }, []);

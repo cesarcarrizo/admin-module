@@ -12,7 +12,7 @@ const CErrores = () => {
         "Access-Control-Allow-Origin": "*",
       },
     };
-    Axios.get(uri)
+    Axios.get(uri, config)
       .then((res) => setErrores(res["data"]))
       .catch((err) => alert(err));
   }, []);

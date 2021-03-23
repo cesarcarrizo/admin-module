@@ -13,7 +13,7 @@ const CAerolineas = () => {
         "Access-Control-Allow-Origin": "*",
       },
     };
-    Axios.get(uri)
+    Axios.get(uri, config)
       .then((res) => setAerolineas(res["data"]))
       .catch((err) => alert(err));
   }, []);

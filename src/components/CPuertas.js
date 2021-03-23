@@ -12,7 +12,7 @@ const CPuertas = () => {
         "Access-Control-Allow-Origin": "*",
       },
     };
-    Axios.get(uri)
+    Axios.get(uri, config)
       .then((res) => setPuertas(res["data"]))
       .catch((err) => alert(err));
   }, []);

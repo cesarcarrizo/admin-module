@@ -13,7 +13,7 @@ const CBitacora = () => {
         "Access-Control-Allow-Origin": "*",
       },
     };
-    Axios.get(uri)
+    Axios.get(uri, config)
       .then((res) => setBitacoras(res["data"]))
       .catch((err) => alert(err));
   }, []);
@@ -23,16 +23,26 @@ const CBitacora = () => {
       {bitacoras !== null ? (
         <Alert>
           <br></br>
-          <strong>the shieet</strong>
+          <strong>Bitácora</strong>
           <br></br>
           <Table striped bordered hover variant="dark">
             <thead>
-              <th>bitz</th>
+              <th>Usuario</th>
+              <th>Fecha y Hora</th>
+              <th>Tipo de Consulta realizada</th>
+              <th>Detalle</th>
             </thead>
             <tbody>
-              {
-                // map the shieet boi
-              }
+              {bitacoras.map((b) => {
+                return (
+                  <tr key={b["id"]}>
+                    <td>{b["usuario"]}</td>
+                    <td>{b["fechahora"]}</td>
+                    <td>{b["tipoconsulta"]}</td>
+                    <td>{b["detalle"]}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </Table>
         </Alert>
