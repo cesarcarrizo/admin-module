@@ -7,9 +7,14 @@ import Main from "./components/Main";
 
 const App = () => {
   const [users, setUsers] = useState(null);
+  const [closedSession, setClosedSession] = useState(false);
   useEffect(() => {
     getAllUsers();
   }, []);
+  // para cuando se cierra sesion desde la app
+  useEffect(() => {
+    getAllUsers();
+  }, [closedSession]);
   const getAllUsers = () => {
     const config = {
       headers: {
@@ -29,7 +34,11 @@ const App = () => {
       {users !== null ? (
         <Container>
           <UpperBar />
-          <Main users={users} />
+          <Main
+            users={users}
+            session={closedSession}
+            sessioncloser={setClosedSession}
+          />
           <hr />
           <small>César Enrique Carrizo Marrero - ULACIT</small>
         </Container>

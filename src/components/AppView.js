@@ -21,7 +21,7 @@ import CErrores from "./CErrores";
 import CBitacora from "./CBitacora";
 import { Button } from "react-bootstrap";
 
-const AppView = ({ guest, displaysetter }) => {
+const AppView = ({ guest, displaysetter, sessioncloser, session }) => {
   const [sectionToRender, setSectionToRender] = useState("home");
   const [routetoken, setRoutetoken] = useState(0);
   return (
@@ -38,7 +38,10 @@ const AppView = ({ guest, displaysetter }) => {
               variant="outline-danger"
               size="sm"
               block
-              onClick={() => displaysetter("login")}
+              onClick={() => {
+                displaysetter("login");
+                sessioncloser(!session);
+              }}
             >
               Cerrar sesión
             </Button>

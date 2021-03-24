@@ -3,12 +3,19 @@ import React, { useState } from "react";
 import LoginView from "./LoginView";
 import AppView from "./AppView";
 
-const Main = ({ users }) => {
+const Main = ({ users, sessioncloser, session }) => {
   const [displaying, setDisplaying] = useState("login");
   const [guest, setGuest] = useState(null);
   switch (displaying) {
     case "app":
-      return <AppView guest={guest} displaysetter={setDisplaying} />;
+      return (
+        <AppView
+          guest={guest}
+          displaysetter={setDisplaying}
+          sessioncloser={sessioncloser}
+          session={session}
+        />
+      );
     case "login":
       return (
         <LoginView
