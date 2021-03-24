@@ -22,17 +22,32 @@ const CDescargas = () => {
     <>
       {descargas !== null ? (
         <Alert>
-          <br></br>
-          <strong>the shieet</strong>
+          <strong>Descargas</strong>
           <br></br>
           <Table striped bordered hover variant="dark">
             <thead>
-              <th>bitz</th>
+              <th>Consecutivos</th>
+              <th>Aerolínea</th>
+              <th>Procedencia</th>
+              <th>Fecha</th>
+              <th>ETA</th>
+              <th>Estado del vuelo</th>
+              <th>Puerta</th>
             </thead>
             <tbody>
-              {
-                // map the shieet boi
-              }
+              {descargas.map((d) => {
+                return (
+                  <tr key={d["id"]}>
+                    <td>{d["id"]}</td>
+                    <td>{d["aerolinea"]}</td>
+                    <td>{d["procedencia"]}</td>
+                    <td>{d["fecha"]}</td>
+                    <td>{d["hora"]}</td>
+                    <td>{d["estado"]}</td>
+                    <td>{d["puerta"]}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </Table>
         </Alert>

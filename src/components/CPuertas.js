@@ -26,12 +26,20 @@ const CPuertas = () => {
           <br></br>
           <Table striped bordered hover variant="dark">
             <thead>
-              <th>bitz</th>
+              <th>Consecutivo</th>
+              <th>Número de puerta</th>
+              <th>Estado</th>
             </thead>
             <tbody>
-              {
-                // map the shieet boi
-              }
+              {puertas.map((p) => {
+                return (
+                  <tr key={p["id"]}>
+                    <td>{p["id"]}</td>
+                    <td>{p["numero"]}</td>
+                    <td>{p["estado"] === 0 ? "Cerrada" : "Abierta"}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </Table>
         </Alert>

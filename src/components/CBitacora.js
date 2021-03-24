@@ -22,7 +22,6 @@ const CBitacora = () => {
     <>
       {bitacoras !== null ? (
         <Alert>
-          <br></br>
           <strong>Bitácora</strong>
           <br></br>
           <Table striped bordered hover variant="dark">

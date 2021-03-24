@@ -22,17 +22,22 @@ const CAerolineas = () => {
     <>
       {aerolineas !== null ? (
         <Alert>
-          <br></br>
-          <strong>the shieet</strong>
+          <strong>Aerolíneas</strong>
           <br></br>
           <Table striped bordered hover variant="dark">
             <thead>
-              <th>bitz</th>
+              <th>Consecutivo</th>
+              <th>Nombre de la aerolínea</th>
             </thead>
             <tbody>
-              {
-                // map the shieet boi
-              }
+              {aerolineas.map((a) => {
+                return (
+                  <tr key={a["id"]}>
+                    <td>{a["id"]}</td>
+                    <td>{a["nombre"]}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </Table>
         </Alert>

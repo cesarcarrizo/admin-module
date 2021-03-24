@@ -21,17 +21,22 @@ const CErrores = () => {
     <>
       {errores !== null ? (
         <Alert>
-          <br></br>
-          <strong>the shieet</strong>
+          <strong>Errores</strong>
           <br></br>
           <Table striped bordered hover variant="dark">
             <thead>
-              <th>bitz</th>
+              <th>Fecha y hora del error</th>
+              <th>Tipo de error</th>
             </thead>
             <tbody>
-              {
-                // map the shieet boi
-              }
+              {errores.map((e) => {
+                return (
+                  <tr key={e["id"]}>
+                    <td>{e["fechahora"]}</td>
+                    <td>{e["tipo"]}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </Table>
         </Alert>
