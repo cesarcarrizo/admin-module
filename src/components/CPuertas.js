@@ -21,10 +21,9 @@ const CPuertas = () => {
     <>
       {puertas !== null ? (
         <Alert>
+          <strong>Puertas</strong>
           <br></br>
-          <strong>the shieet</strong>
-          <br></br>
-          <Table striped bordered hover variant="dark">
+          <Table striped bordered hover variant="light">
             <thead>
               <th>Consecutivo</th>
               <th>Número de puerta</th>

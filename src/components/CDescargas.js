@@ -24,7 +24,7 @@ const CDescargas = () => {
         <Alert>
           <strong>Descargas</strong>
           <br></br>
-          <Table striped bordered hover variant="dark">
+          <Table striped bordered hover variant="light">
             <thead>
               <th>Consecutivos</th>
               <th>Aerolínea</th>

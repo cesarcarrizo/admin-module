@@ -24,7 +24,7 @@ const CBitacora = () => {
         <Alert>
           <strong>Bitácora</strong>
           <br></br>
-          <Table striped bordered hover variant="dark">
+          <Table striped bordered hover variant="light">
             <thead>
               <th>Usuario</th>
               <th>Fecha y Hora</th>

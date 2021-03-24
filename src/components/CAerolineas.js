@@ -24,7 +24,7 @@ const CAerolineas = () => {
         <Alert>
           <strong>Aerolíneas</strong>
           <br></br>
-          <Table striped bordered hover variant="dark">
+          <Table striped bordered hover variant="light">
             <thead>
               <th>Consecutivo</th>
               <th>Nombre de la aerolínea</th>

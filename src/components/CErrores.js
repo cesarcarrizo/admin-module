@@ -23,7 +23,7 @@ const CErrores = () => {
         <Alert>
           <strong>Errores</strong>
           <br></br>
-          <Table striped bordered hover variant="dark">
+          <Table striped bordered hover variant="light">
             <thead>
               <th>Fecha y hora del error</th>
               <th>Tipo de error</th>
