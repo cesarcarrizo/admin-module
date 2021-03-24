@@ -19,8 +19,9 @@ import CPuertas from "./CPuertas";
 import CDescargas from "./CDescargas";
 import CErrores from "./CErrores";
 import CBitacora from "./CBitacora";
+import { Button } from "react-bootstrap";
 
-const AppView = ({ guest }) => {
+const AppView = ({ guest, displaysetter }) => {
   const [sectionToRender, setSectionToRender] = useState("home");
   const [routetoken, setRoutetoken] = useState(0);
   return (
@@ -29,12 +30,23 @@ const AppView = ({ guest }) => {
       <Card.Text>
         <Indicator ruta={routetoken} guest={guest} />
       </Card.Text>
+
       <Card.Body>
         <Row>
           <Col>
+            <Button
+              variant="outline-danger"
+              size="sm"
+              block
+              onClick={() => displaysetter("login")}
+            >
+              Cerrar sesión
+            </Button>
+            <hr />
             <Menu
               sectionsetter={setSectionToRender}
               routesetter={setRoutetoken}
+              role={guest["rol"]}
             />
           </Col>
           <Col xs="9">

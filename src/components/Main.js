@@ -8,7 +8,7 @@ const Main = ({ users }) => {
   const [guest, setGuest] = useState(null);
   switch (displaying) {
     case "app":
-      return <AppView guest={guest} />;
+      return <AppView guest={guest} displaysetter={setDisplaying} />;
     case "login":
       return (
         <LoginView
