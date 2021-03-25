@@ -41,7 +41,6 @@ const NewPuerta = ({ rendersetter }) => {
 
   const generarId = async () => {
     let consecutivos = await getConsecutivos();
-    //console.log(consecutivos);
     goNext("puertas");
     return trim(consecutivos[2], read("rPuertas"));
   };

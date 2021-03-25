@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import { Alert, Form, Spinner, Row, Col } from "react-bootstrap";
+import { Alert, Form, Spinner, Row, Col, Button } from "react-bootstrap";
+import { read, goNext, trim, getConsecutivos } from "../store/StorageHandler";
+import PostedAlert from "./PostedAlert";
 
 const VEntrante = () => {
   const [aerolineas, setAerolineas] = useState(null);
@@ -13,6 +15,9 @@ const VEntrante = () => {
   const [fecha, setFecha] = useState(null);
   const [eta, setEta] = useState(null);
   const [estado, setEstado] = useState(null);
+
+  const [requested, setRequested] = useState(false);
+  const [posted, setPosted] = useState(false);
 
   useEffect(() => {
     getAerolineas();
@@ -56,122 +61,196 @@ const VEntrante = () => {
       .catch((err) => alert(err));
   };
 
+  const handler = async () => {
+    if (validaciones()) {
+      setRequested(true);
+      const uri =
+        "https://vvuelosrestfulservices.azurewebsites.net/api/VuelosLlegadas";
+      const config = {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      };
+
+      let toPost = {
+        id: await generarId(),
+        aerolinea,
+        procedencia: pais,
+        fecha,
+        hora: eta,
+        estado,
+        puerta,
+      };
+
+      Axios.post(uri, toPost, config)
+        .then((res) => {
+          setPosted(true);
+        })
+        .catch((err) => alert(err));
+    }
+  };
+
+  const generarId = async () => {
+    let consecutivos = await getConsecutivos();
+    goNext("vl");
+    return trim(consecutivos[4], read("rVuelosLlegadas"));
+  };
+
+  const validaciones = () => {
+    if (
+      puerta === null ||
+      pais === null ||
+      aerolinea === null ||
+      fecha === null ||
+      eta === null ||
+      estado === null
+    ) {
+      alert("Todos los campos son obligatorios!");
+      return false;
+    }
+    return true;
+  };
+
   return (
     <>
-      {aerolineas !== null && puertas !== null && paises !== null ? (
-        <Alert variant="warning">
-          <strong>Indique los datos del nuevo vuelo:</strong>
-          <br></br>
-          <Row>
-            <Col>
-              <label>
-                Seleccione la aerolínea correspondiente al vuelo a generar:
-              </label>
-              <Form.Control as="select">
-                <option selected onClick={() => setAerolinea(null)}>
-                  Seleccione una aerolínea...
-                </option>
-                {aerolineas.map((a) => {
-                  return (
-                    <option
-                      key={a["id"]}
-                      onClick={() => setAerolinea(a["nombre"])}
-                    >
-                      {a["nombre"]}
-                    </option>
-                  );
-                })}
-              </Form.Control>
-            </Col>
-            <Col>
-              <label>
-                Seleccione la puerta disponible donde llegará el vuelo:
-              </label>
-              <Form.Control as="select">
-                <option selected onClick={() => setPuerta(null)}>
-                  Seleccione una puerta...
-                </option>
-                {puertas.map((p) => {
-                  if (p["estado"] === 1) {
-                    return (
-                      <option
-                        key={p["id"]}
-                        onClick={() => setPuerta(p["numero"])}
-                      >
-                        {p["numero"]}
-                      </option>
-                    );
-                  }
-                })}
-              </Form.Control>
-            </Col>
-            <Col>
-              <label>Seleccione la procedencia del vuelo a generar:</label>
-              <Form.Control as="select">
-                <option selected onClick={() => setPais(null)}>
-                  Seleccione una procedencia...
-                </option>
-                {paises.map((pa) => {
-                  return (
-                    <option
-                      key={pa["id"]}
-                      onClick={() => setPais(pa["nombre"])}
-                    >
-                      {pa["nombre"]}
-                    </option>
-                  );
-                })}
-              </Form.Control>
-            </Col>
-          </Row>
-          <br></br>
-          <Row>
-            <Col>
-              <label>
-                Escoja la fecha correspondiente a la llegada del vuelo:
-              </label>
-              <Form.Control
-                type="date"
-                onChange={(e) => setFecha(e["target"]["value"])}
-              ></Form.Control>
-            </Col>
-            <Col>
-              <label>Escoja la hora estimada de llegada (ETA)</label>
-              <Form.Control
-                type="time"
-                onChange={(e) => setEta(e["target"]["value"])}
-              ></Form.Control>
-            </Col>
-            <Col>
-              <label>Escoja el estado inicial del vuelo:</label>
-              <Form.Control as="select">
-                <option selected onClick={() => setEstado(null)}>
-                  Seleccione un estado inicial...
-                </option>
-                <option onClick={() => setEstado("Programado")}>
-                  Programado
-                </option>
-                <option onClick={() => setEstado("En camino")}>
-                  En camino
-                </option>
-                <option onClick={() => setEstado("Retrasado")}>
-                  Retrasado
-                </option>
-                <option onClick={() => setEstado("Descargando")}>
-                  Descargando
-                </option>
-                <option onClick={() => setEstado("Terminado")}>
-                  Terminado
-                </option>
-                <option onClick={() => setEstado("EMERGENCIA")}>
-                  EMERGENCIA
-                </option>
-              </Form.Control>
-            </Col>
-          </Row>
-        </Alert>
+      {!posted ? (
+        <>
+          {!requested ? (
+            <>
+              {aerolineas !== null && puertas !== null && paises !== null ? (
+                <Alert variant="warning">
+                  <br></br>
+                  <strong>Indique los datos del nuevo vuelo entrante:</strong>
+                  <br></br>
+                  <Row>
+                    <Col>
+                      <label>
+                        Seleccione la aerolínea correspondiente al vuelo a
+                        generar:
+                      </label>
+                      <Form.Control as="select">
+                        <option selected onClick={() => setAerolinea(null)}>
+                          Seleccione una aerolínea...
+                        </option>
+                        {aerolineas.map((a) => {
+                          return (
+                            <option
+                              key={a["id"]}
+                              onClick={() => setAerolinea(a["nombre"])}
+                            >
+                              {a["nombre"]}
+                            </option>
+                          );
+                        })}
+                      </Form.Control>
+                    </Col>
+                    <Col>
+                      <label>
+                        Seleccione la puerta disponible donde llegará el vuelo:
+                      </label>
+                      <Form.Control as="select">
+                        <option selected onClick={() => setPuerta(null)}>
+                          Seleccione una puerta...
+                        </option>
+                        {puertas.map((p) => {
+                          if (p["estado"] === 1) {
+                            return (
+                              <option
+                                key={p["id"]}
+                                onClick={() => setPuerta(p["numero"])}
+                              >
+                                {p["numero"]}
+                              </option>
+                            );
+                          }
+                        })}
+                      </Form.Control>
+                    </Col>
+                    <Col>
+                      <label>
+                        Seleccione la procedencia del vuelo a generar:
+                      </label>
+                      <Form.Control as="select">
+                        <option selected onClick={() => setPais(null)}>
+                          Seleccione una procedencia...
+                        </option>
+                        {paises.map((pa) => {
+                          return (
+                            <option
+                              key={pa["id"]}
+                              onClick={() => setPais(pa["nombre"])}
+                            >
+                              {pa["nombre"]}
+                            </option>
+                          );
+                        })}
+                      </Form.Control>
+                    </Col>
+                  </Row>
+                  <br></br>
+                  <Row>
+                    <Col>
+                      <label>
+                        Escoja la fecha correspondiente a la llegada del vuelo:
+                      </label>
+                      <Form.Control
+                        type="date"
+                        onChange={(e) => setFecha(e["target"]["value"])}
+                      ></Form.Control>
+                    </Col>
+                    <Col>
+                      <label>Escoja la hora estimada de llegada (ETA)</label>
+                      <Form.Control
+                        type="time"
+                        onChange={(e) => setEta(e["target"]["value"])}
+                      ></Form.Control>
+                    </Col>
+                    <Col>
+                      <label>Escoja el estado inicial del vuelo:</label>
+                      <Form.Control as="select">
+                        <option selected onClick={() => setEstado(null)}>
+                          Seleccione un estado inicial...
+                        </option>
+                        <option onClick={() => setEstado("Programado")}>
+                          Programado
+                        </option>
+                        <option onClick={() => setEstado("En camino")}>
+                          En camino
+                        </option>
+                        <option onClick={() => setEstado("Retrasado")}>
+                          Retrasado
+                        </option>
+                        <option onClick={() => setEstado("Descargando")}>
+                          Descargando
+                        </option>
+                        <option onClick={() => setEstado("Terminado")}>
+                          Terminado
+                        </option>
+                        <option onClick={() => setEstado("EMERGENCIA")}>
+                          EMERGENCIA
+                        </option>
+                      </Form.Control>
+                    </Col>
+                  </Row>
+                  <br></br>
+                  <br></br>
+                  <Button variant="outline-warning" onClick={handler} block>
+                    Generar vuelo
+                  </Button>
+                </Alert>
+              ) : (
+                <Spinner animation="border" />
+              )}
+            </>
+          ) : (
+            <Spinner animation="border" />
+          )}
+        </>
       ) : (
-        <Spinner animation="border" />
+        <PostedAlert
+          header="Nuevo vuelo entrante agregado con éxito!"
+          content="Revisar la sección de Consultas - Descargas"
+        />
       )}
     </>
   );
