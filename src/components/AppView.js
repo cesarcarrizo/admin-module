@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { Button } from "react-bootstrap";
+
 import img from "../imgs/papelarrugado.jpg";
 import Menu from "./Menu";
 import NewUser from "./NewUser";
@@ -19,7 +21,6 @@ import CPuertas from "./CPuertas";
 import CDescargas from "./CDescargas";
 import CErrores from "./CErrores";
 import CBitacora from "./CBitacora";
-import { Button } from "react-bootstrap";
 
 const AppView = ({ guest, displaysetter, sessioncloser, session }) => {
   const [sectionToRender, setSectionToRender] = useState("home");
@@ -39,8 +40,9 @@ const AppView = ({ guest, displaysetter, sessioncloser, session }) => {
               size="sm"
               block
               onClick={() => {
-                displaysetter("login");
                 sessioncloser(!session);
+
+                displaysetter("login");
               }}
             >
               Cerrar sesión
@@ -53,7 +55,7 @@ const AppView = ({ guest, displaysetter, sessioncloser, session }) => {
             />
           </Col>
           <Col xs="9">
-            {sectionToRender === "home" ? <Home /> : <></>}
+            {sectionToRender === "home" ? <Home role={guest["rol"]} /> : <></>}
             {sectionToRender === "users" ? <Users /> : <></>}
             {sectionToRender === "new-user" ? <NewUser /> : <></>}
             {sectionToRender === "set-roles" ? <UpdateUserRoles /> : <></>}
