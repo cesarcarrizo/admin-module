@@ -27,7 +27,10 @@ export const goNext = async (table) => {
           return new Error(
             `El rango del consecutivo ${consecutivos[0]["tabla"]} ha llegado a su limite! Cree mas consecutivos!`
           );
-        localStorage.setItem("rPaises", localStorage.getItem("rPaises") + 1);
+        localStorage.setItem(
+          "rPaises",
+          Number(localStorage.getItem("rPaises")) + 1
+        );
       }
       break;
     case "aerolineas":
