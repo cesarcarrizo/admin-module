@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Axios from "axios";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 ////////////////
@@ -75,4 +74,3 @@ const localStorageInitialConfigurations = (uriEntityStr, localKeyStr) => {
 ////////////////////////////////////////////////////////////
 
 ReactDOM.render(<App />, document.getElementById("root"));
-reportWebVitals();
